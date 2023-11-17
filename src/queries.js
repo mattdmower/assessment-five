@@ -52,7 +52,6 @@ export async function printHumansAndAnimals() {
     }
 }
 
-
 // Return a Set containing the full names of all humans
 // with animals of the given species.
 export async function getHumansByAnimalSpecies(species) {
