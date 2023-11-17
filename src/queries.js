@@ -30,25 +30,22 @@ export const query8 = Human.findAll({ where: { email: { [Op.notLike]: '%gmail%' 
 // Print a directory of humans and their animals
 export async function printHumansAndAnimals() {
     try {
-        // Fetch all humans including their associated animals
         const humansWithAnimals = await Human.findAll({
             include: [{
                 model: Animal,
-                as: 'animals' // Ensure this alias matches the one defined in your association
+                as: 'animals'
             }]
         });
 
-        // Construct a directory of humans and their animals
         const directory = humansWithAnimals.map(human => {
             const animals = human.animals.map(animal => `${animal.name} (${animal.species})`).join(', ');
             return `${human.fname} ${human.lname}: ${animals}`;
         }).join('\n');
 
-        // Return the directory
         return directory;
     } catch (error) {
         console.error('Error fetching humans and animals:', error);
-        throw error; // Rethrow the error for further handling if necessary
+        throw error;
     }
 }
 
@@ -56,7 +53,6 @@ export async function printHumansAndAnimals() {
 // with animals of the given species.
 export async function getHumansByAnimalSpecies(species) {
     try {
-        // Fetch humans who own animals of the specified species
         const humans = await Human.findAll({
             include: [{
                 model: Animal,
@@ -64,18 +60,15 @@ export async function getHumansByAnimalSpecies(species) {
             }]
         });
 
-        // Create a Set to store unique full names of humans
         const humanNames = new Set();
 
-        // Add each human's full name to the Set
         humans.forEach(human => {
             humanNames.add(`${human.fname} ${human.lname}`);
         });
 
-        // Return the Set of full names
         return humanNames;
     } catch (error) {
         console.error('Error fetching humans by animal species:', error);
-        throw error; // Rethrow the error for further handling if necessary
+        throw error;
     }
 }
