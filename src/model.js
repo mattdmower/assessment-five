@@ -43,7 +43,7 @@ export class Animal extends Model {
   [util.inspect.custom]() {
     return this.toJSON();
   }
-}
+};
 
 // TODO: Animal.init()
 Animal.init({
