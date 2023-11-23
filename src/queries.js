@@ -74,7 +74,6 @@ export const query6 = Animal.findAll({
     throw error;
 });
 
-
 // Get all the animals with species "fish" OR "rabbit"
 export const query7 = Animal.findAll({ where: { species: { [Op.or]: ['fish', 'rabbit'] } } });
 
@@ -108,8 +107,7 @@ export async function printHumansAndAnimals() {
     }
 };
 
-// Return a Set containing the full names of all humans
-// with animals of the given species.
+// Return a Set containing the full names of all humans with animals of the given species.
 export async function getHumansByAnimalSpecies(species) {
     try {
         const humans = await Human.findAll({
